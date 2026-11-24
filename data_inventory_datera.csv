@@ -1,0 +1,10 @@
+dataset,file_or_table,description_one_sentence,business_domain,data_owner,data_steward,data_custodian,contains_personal_data_Y_N,sensitivity_level,refresh_frequency,row_count,issues_spotted
+customers,data/customers.csv | raw.customers,Table for customers personal informations.,,,,,Y,Restricted,Daily,1241,"Consistency (FR, fr, france, also platinium PLatinium, etc..) / Completeness (Missing mails) / Uniqueness (Duplicate IDs)
+"
+products,data/products.csv | raw.products,The catalog of items that can be bought.,,,,,N,Public,Weekly,52,Completeness (Missing prices) / Uniqueness (Duplicate sku)
+orders,data/orders.csv | raw.orders,"Table for the orders informations, such as price and
+customers involved.",,,,,Y,Confidential,Daily,5207,Uniqueness (duplicate customer IDs) / Completeness (Missing order_dates)
+order_items,data/order_items.csv | raw.order_items,"One line per product inside an order, with the quantity bought and the price charged.",,,,,N,Internal,Daily,9193,Validity (Lines with -1 or 0 as quantity) / Consistency (Prices different unit from catalog)
+payments,data/payments.csv | raw.payments,"Table for the payment, sent to the selling system.",,,,,Y,Confidential,Daily,4902,Completeness / Consistency
+support_tickets,data/support_tickets.csv | raw.support_tickets,"Table for support tickets, in case of problems with shipment or the website.",,,,,Y,Restricted,Daily,422,Accuracy (Damage items mixed with positive comment) / Completeness
+marketing_campaign_export,data/marketing_campaign_export.csv | raw.marketing_campaign_export,The list of customers selected to receive the spring 2026 marketing campaign,,,,,Y,Confidential,For each campaign,600,Completeness / Uniqueness (Only one campaign)
