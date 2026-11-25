@@ -1,0 +1,7 @@
+rule,failing_rows,severity,action
+Order IDs must be unique,14,high,Investigate duplicate order IDs against the source system and correct or remove duplicate records.
+Order customer IDs must exist in customers,14,high,Resolve each unmatched customer ID against the customer master; correct the ID or quarantine the order.
+Order date must not be null,11,medium,Recover missing order dates from the source system before reporting or processing these orders.
+Order date must not be in the future,5,medium,Verify future-dated orders against the source and correct erroneous dates or confirm scheduled orders.
+Order status must be pending shipped delivered cancelled or returned,9,medium,Normalize casing and whitespace and map valid spelling variants to the approved status values.
+Order amount must be greater than zero and below 5000 EUR,6,high,Review each amount against the source transaction and correct invalid values; do not replace them with estimates.

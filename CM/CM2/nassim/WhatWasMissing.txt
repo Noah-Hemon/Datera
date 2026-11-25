@@ -1,2 +1,0 @@
-The governance guard that was missing is an automated test made to enforce 
-the expected amount ranges and the decimal formating.
