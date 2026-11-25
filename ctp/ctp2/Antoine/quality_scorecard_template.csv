@@ -1,0 +1,23 @@
+dimension,rule_in_plain_words,column,how_you_measured_it,failing_rows,total_rows,score_pct,severity_high_medium_low,who_should_fix_owner_steward_custodian
+Completeness,email is filled,email,count of empty email,48,1241,96.13,high,Owner
+Completeness,country is filled,country,count of empty country,37,1241,97.02,medium,Steward
+Uniqueness,customer_id is unique,customer_id,rows involved in a duplicated customer_id,16,1241,98.71,high,Custodian
+Uniqueness,one account per email,email,"rows sharing the same lower-cased, trimmed email ",120,1193,89.94,medium,Steward
+Validity,email looks like an email,email,non-empty emails not matching the regex,28,1193,97.65,medium,Steward
+Consistency,"country is an ISO-2 code (FR, DE, ES, BE)",country,"non-empty values not in {FR, DE, ES, BE}",299,1204,75.17,medium,Custodian
+Consistency,signup_date is YYYY-MM-DD,signup_date,non-empty values not matching ^\d{4}-\d{2}-\d{2}$,303,1241,75.58,medium,Custodian
+Validity,loyalty_tier is bronze/silver/gold/platinum,loyalty_tier,non-empty values outside the allowed list,13,1241,98.95,low,Steward
+Accuracy,birth date is plausible (1906 to today),birth_date,parsed ISO dates in the future or before 1906,8,1067,99.25,high,Owner
+Validity,French postal code has 5 digits,postal_code,FR rows whose postal_code is not ^\d{5}$,45,692,93.5,medium,Custodian
+Completeness,"orders table has between 1,000 and 100,000 rows",,GX orders: expect_table_row_count_to_be_between,0,5207,100.0,high,Custodian
+Completeness,order_id is filled,order_id,GX orders: expect_column_values_to_not_be_null,0,5207,100.0,high,Custodian
+Uniqueness,order_id is unique,order_id,GX orders: expect_column_values_to_be_unique,14,5207,99.73,high,Custodian
+Completeness,customer_id is filled,customer_id,GX orders: expect_column_values_to_not_be_null,0,5207,100.0,high,Steward
+Consistency,customer_id exists in customers,customer_id,GX orders: expect_column_values_to_be_in_set,14,5207,99.73,high,Steward
+Completeness,order_date is filled,order_date,GX orders: expect_column_values_to_not_be_null,11,5207,99.79,medium,Steward
+Validity,order_date is YYYY-MM-DD,order_date,GX orders: expect_column_values_to_match_regex,0,5207,100.0,medium,Custodian
+Accuracy,no order dated in the future,order_date_dt,GX orders: expect_column_values_to_be_between,5,5207,99.9,medium,Owner
+Validity,status is pending/shipped/delivered/cancelled/returned,status,GX orders: expect_column_values_to_be_in_set,9,5207,99.83,medium,Steward
+Validity,channel is in the allowed list,channel,GX orders: expect_column_values_to_be_in_set,1759,5207,66.22,low,Steward
+Consistency,"shipping_country is FR, DE, ES or BE",shipping_country,GX orders: expect_column_values_to_be_in_set,0,5207,100.0,medium,Custodian
+Accuracy,total_amount_eur is > 0 and below the maximum,total_amount_eur,GX orders: expect_column_values_to_be_between,6,5207,99.88,high,Owner

@@ -1,0 +1,3 @@
+There was no agreed definition saying that amount is in euros and no owner responsible for it, 
+so when the payment team switched to cents, nothing was changed. The new batch still passed the basic checks (not null, unique, valid currency), 
+so it should have been caught by a range test on the amounts.
