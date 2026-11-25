@@ -1,0 +1,8 @@
+dataset,file_or_table,description_one_sentence,business_domain,data_owner,data_steward,data_custodian,contains_personal_data_Y_N,sensitivity_level,refresh_frequency,row_count,issues_spotted
+customers,data/customers.csv | raw.customers,general customer informations and contact,,,,,Y,internal,,1241,"consistancty, uniqueness"
+products,data/products.csv | raw.products,"informations about the products, name, supplier...",,,,,N,public,,52,
+orders,data/orders.csv | raw.orders,contains informations about the orders linked with the client data,,,,,N,public,,5207,
+order_items,data/order_items.csv | raw.order_items,data abou the orders items,,,,,N,public,,9193,
+payments,data/payments.csv | raw.payments,"informations about the payments including, amount, currency...",,,,,Y,restricted,,4902,
+support_tickets,data/support_tickets.csv | raw.support_tickets,"contain data about the tickets of the clients, including the issue they have",,,,,Y,internal,,422,
+marketing_campaign_export,data/marketing_campaign_export.csv | raw.marketing_campaign_export,data of the markteing campaing that has been exported,,,,,Y,internal,,600,
