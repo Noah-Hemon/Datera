@@ -1,0 +1,9 @@
+,,,,,,score_pct,severity_high_medium_low,who_should_fix_owner_steward_custodian
+Completeness,email is filled,email,with df.isna().sum(),48,1241,96.13,low,Custodan
+Uniqueness,customer_id is unique,customer_id,"with df[""customer_id""].duplicated(keep=False).sum()",16,1241,98.71,low,Custodian
+Validity,Each loyalty tier should follow the same format,loyalty_tier,"with df[""loyalty_tier""].fillna("""").str.strip().str.lower().isin(allowed_loyalty_tiers)",4,1241,99.68,low,Steward
+Consistency,Signup dates should be YYYY-MM-DD,signup_date,"with regex and df[""signup_date""].fillna("""").str.fullmatch(signup_date_regex)",303,1241,75.58,medium,Steward
+Accuracy,Birth date should be between 1906 and today − 18 years,birth_date,"with (birth_dates > today) | (birth_dates < pd.Timestamp(""1906-01-01""))",10,1241,99.19,low,Owner
+Validity,Email looks like an email,email,"with df[""email""].fillna("""").str.match(email_regex)",120,1241,90.33,high,Steward
+Uniqueness,Each email are unique,email,"with normalised_email.ne("""") & normalised_email.duplicated(keep=False)",76,1241,93.88,low,Custodian
+Consistency,Distinct country values,country,"with df[""country""].value_counts(dropna=False)) and df[""country""].nunique(dropna=False))",272,1241,78.08,high,Steward

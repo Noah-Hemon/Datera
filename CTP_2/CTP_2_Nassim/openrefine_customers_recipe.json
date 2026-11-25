@@ -1,0 +1,315 @@
+[
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "customer_id",
+    "expression": "value.trim()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column customer_id using expression value.trim()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "email",
+    "expression": "value.toLowercase()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column email using expression value.toLowercase()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "loyalty_tier",
+    "expression": "value.toLowercase()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column loyalty_tier using expression value.toLowercase()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_name",
+    "expression": "value.trim()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column first_name using expression value.trim()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "last_name",
+    "expression": "value.trim()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column last_name using expression value.trim()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_name",
+    "expression": "value.replace(/[\\p{Zs}\\s]+/,' ')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column first_name using expression value.replace(/[\\p{Zs}\\s]+/,' ')"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "last_name",
+    "expression": "value.replace(/[\\p{Zs}\\s]+/,' ')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column last_name using expression value.replace(/[\\p{Zs}\\s]+/,' ')"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_name",
+    "expression": "value.toTitlecase()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column first_name using expression value.toTitlecase()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "last_name",
+    "expression": "value.toTitlecase()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column last_name using expression value.toTitlecase()"
+  },
+  {
+    "op": "core/blank-down",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "customer_id",
+    "description": "Blank down cells in column customer_id"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "email",
+    "expression": "value.toLowercase()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column email using expression value.toLowercase()"
+  },
+  {
+    "op": "core/blank-down",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "customer_id",
+    "description": "Blank down cells in column customer_id"
+  },
+  {
+    "op": "core/row-removal",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "customer_id",
+          "expression": "facetCount(value, 'value', 'customer_id') > 1",
+          "columnName": "customer_id",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "description": "Remove rows"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "country",
+    "expression": "grel:value.trim().toLowercase()\n.replace(/^(fr|fra|france)$/, \"FR\")\n.replace(/^(de|deu|germany|allemagne)$/, \"DE\")\n.replace(/^(es|espagne|spain)$/, \"ES\")\n.replace(/^(be|bel|belgique|belgium)$/, \"BE\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column country using expression grel:value.trim().toLowercase()\n.replace(/^(fr|fra|france)$/, \"FR\")\n.replace(/^(de|deu|germany|allemagne)$/, \"DE\")\n.replace(/^(es|espagne|spain)$/, \"ES\")\n.replace(/^(be|bel|belgique|belgium)$/, \"BE\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "birth_date",
+    "expression": "grel:if(isNotNull(value.match(/\\d{2}\\/\\d{2}\\/\\d{4}/)), with(value.split('/'), p, p[2]+'-'+p[1]+'-'+p[0]), if(isNotNull(value.match(/\\d{2}-\\d{2}-\\d{4}/)), with(value.split('-'), p, p[2]+'-'+p[0]+'-'+p[1]), if(isNotNull(value.match(/\\d{4}\\/\\d{2}\\/\\d{2}/)), value.replace('/', '-'), value)))",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column birth_date using expression grel:if(isNotNull(value.match(/\\d{2}\\/\\d{2}\\/\\d{4}/)), with(value.split('/'), p, p[2]+'-'+p[1]+'-'+p[0]), if(isNotNull(value.match(/\\d{2}-\\d{2}-\\d{4}/)), with(value.split('-'), p, p[2]+'-'+p[0]+'-'+p[1]), if(isNotNull(value.match(/\\d{4}\\/\\d{2}\\/\\d{2}/)), value.replace('/', '-'), value)))"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "signup_date",
+    "expression": "grel:if(isNotNull(value.match(/\\d{2}\\/\\d{2}\\/\\d{4}/)), with(value.split('/'), p, p[2]+'-'+p[1]+'-'+p[0]), if(isNotNull(value.match(/\\d{2}-\\d{2}-\\d{4}/)), with(value.split('-'), p, p[2]+'-'+p[0]+'-'+p[1]), if(isNotNull(value.match(/\\d{4}\\/\\d{2}\\/\\d{2}/)), value.replace('/', '-'), value)))",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column signup_date using expression grel:if(isNotNull(value.match(/\\d{2}\\/\\d{2}\\/\\d{4}/)), with(value.split('/'), p, p[2]+'-'+p[1]+'-'+p[0]), if(isNotNull(value.match(/\\d{2}-\\d{2}-\\d{4}/)), with(value.split('-'), p, p[2]+'-'+p[0]+'-'+p[1]), if(isNotNull(value.match(/\\d{4}\\/\\d{2}\\/\\d{2}/)), value.replace('/', '-'), value)))"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "loyalty_tier",
+    "expression": "value.trim()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column loyalty_tier using expression value.trim()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "loyalty_tier",
+    "expression": "value.replace(\"platinium\",\"platinum\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column loyalty_tier using expression value.replace(\"platinium\",\"platinum\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "postal_code",
+    "expression": "grel:if(and(cells['country'].value == 'FR', value.length() == 4), '0' + value, value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column postal_code using expression grel:if(and(cells['country'].value == 'FR', value.length() == 4), '0' + value, value)"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "phone",
+    "expression": "grel:with(value.replace(/[^0-9+]/, ''), v, if(v.startsWith('0033'), '+33' + v.substring(4), if(and(v.startsWith('0'), v.length() == 10), '+33' + v.substring(1), v)))",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column phone using expression grel:with(value.replace(/[^0-9+]/, ''), v, if(v.startsWith('0033'), '+33' + v.substring(4), if(and(v.startsWith('0'), v.length() == 10), '+33' + v.substring(1), v)))"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "email",
+    "expression": "grel:\"no\"",
+    "onError": "set-to-blank",
+    "newColumnName": "is_duplicate_email",
+    "columnInsertIndex": 4,
+    "description": "Create column is_duplicate_email at index 4 based on column email using expression grel:\"no\""
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "email",
+          "expression": "facetCount(value, 'value', 'email') > 1",
+          "columnName": "email",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "is_duplicate_email",
+    "expression": "grel:\"yes\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column is_duplicate_email using expression grel:\"yes\""
+  }
+]
