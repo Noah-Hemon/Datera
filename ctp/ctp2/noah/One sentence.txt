@@ -1,0 +1,1 @@
+The missing guard was the contract because nothing written down said that amount is in euros with at most 2 decimals, so when the sender "quietly" switched to cents, every existing test (not null, unique, allowed values) still passed and nobody was alerted.

@@ -1,0 +1,19 @@
+dimension,rule_in_plain_words,column,how_you_measured_it,failing_rows,total_rows,score_pct,severity_high_medium_low,who_should_fix_owner_steward_custodian
+Completeness,email is filled,email,Count missing values,48,1241,96.13,medium,Owner
+Uniqueness,customer_id is unique,customer_id,Count all rows with a duplicated ID,16,1241,98.71,high,Custodian
+Validity,non-empty email matches the required regex,email,Count non-empty emails that fail the email regex,19,1241,98.47,medium,Custodian
+Consistency,country is an uppercase ISO-2 code,country,Count populated values outside FR DE ES BE,299,1241,75.91,low,Steward
+Accuracy,birth_date is between 1906 and today's 18-year cutoff,birth_date,Count unparseable dates or dates outside the permitted age range,10,1241,99.19,medium,Owner
+Timeliness,latest order_date is within the prior 24 hours,order_date,One check for an order date from 0 to less than 24 hours old,1,1,0.00,high,Custodian
+Completeness,phone is filled,phone,Count missing values,30,1241,97.58,medium,Owner
+Completeness,country is filled,country,Count missing values,37,1241,97.02,low,Owner
+Uniqueness,one account per person by normalized email,email,Strip and lowercase non-empty emails then count duplicate rows,120,1241,90.33,medium,Steward
+Consistency,signup_date uses YYYY-MM-DD,signup_date,Count values not matching the required date format,303,1241,75.58,medium,Custodian
+Validity,loyalty_tier uses an allowed value,loyalty_tier,Count values outside bronze silver gold platinum,13,1241,98.95,medium,Steward
+Validity,French postal code has five digits for country France,postal_code,Count exact France rows whose postal code is not five digits,4,68,94.12,medium,Owner
+Uniqueness,order_id is unique (orders),order_id,GX ExpectColumnValuesToBeUnique - 7 IDs appear twice so 14 rows involved,14,5207,99.73,critical,Custodian
+Consistency,every order's customer_id exists in customers (foreign key),customer_id,GX ExpectColumnValuesToBeInSet against the customers customer_id list,14,5207,99.73,high,Steward
+Completeness,order_date is filled,order_date,GX ExpectColumnValuesToNotBeNull,11,5207,99.79,high,Custodian
+Accuracy,order_date is not in the future,order_date_dt,GX ExpectColumnValuesToBeBetween max = run date (2026-11-25) - 5 orders dated Feb-Mar 2027,5,5207,99.90,high,Custodian
+Validity,status uses an allowed value,status,GX ExpectColumnValuesToBeInSet pending shipped delivered cancelled returned - variants Delivered x2 / 'delivered ' x2 / SHIPPED x4 / canceled x1,9,5207,99.83,medium,Steward
+Validity,total_amount_eur is > 0 and <= 5000,total_amount_eur,GX ExpectColumnValuesToBeBetween min 0 (strict) max 5000 - 4 zeros and 2 negatives (-12.5 / -49.9),6,5207,99.88,high,Owner
