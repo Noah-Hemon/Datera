@@ -1,0 +1,78 @@
+version: 2
+
+models:
+  - name: fct_orders
+    description: "One row per order with gross, refunded and net revenue. Source of the Sales dashboard and the Finance report."
+    meta:
+      owner: "Sara Martin (Head of Sales)"
+      steward: "Karim Benali (Analytics Engineer)"
+      domain: sales
+      tier: gold
+    columns:
+      - name: order_id
+        description: "Order identifier."
+        data_tests: [unique, not_null]
+      - name: net_revenue_eur
+        # TODO (Exercise 3): replace with the glossary term net_revenue using the doc() function
+        description: "{{ doc('net_revenue') }}"
+      # TODO: document the other columns
+      - name: customer_id
+        description: "Customer who placed the order."
+      - name: order_date
+        description: "Date of the order."
+      - name: status
+        description: "Order status."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['pending', 'shipped', 'delivered', 'cancelled', 'returned']
+      - name: channel
+        description: "Sales channel."
+      - name: shipping_country
+        description: "Delivery country."
+      - name: gross_revenue_eur
+        description: "Order total in euros, before refunds."
+      - name: refunded_eur
+        description: "Amount refunded in euros."
+
+  - name: dim_customers
+    description: "One row per customer with lifetime metrics."
+    # TODO: meta owner / steward / domain / tier, column docs, PII tags
+    meta:
+      owner: "Sara Martin (Head of Sales)"
+      steward: "Karim Benali (Analytics Engineer)"
+      domain: customer
+      tier: gold
+    columns:
+      - name: customer_id
+        description: "Customer identifier."
+      - name: first_name
+        description: "First name."
+        tags: ['pii']
+        meta: {classification: confidential}
+      - name: last_name
+        description: "Last name."
+        tags: ['pii']
+        meta: {classification: confidential}
+      - name: email
+        description: "Email."
+        tags: ['pii']
+        meta: {classification: confidential}
+      - name: country_code
+        description: "Country code (FR, DE, ES, BE)."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['FR', 'DE', 'ES', 'BE']
+      - name: loyalty_tier
+        description: "Loyalty level."
+      - name: signup_date
+        description: "Date the account was created."
+      - name: has_marketing_consent
+        description: "True if the customer accepted marketing emails."
+      - name: lifetime_orders
+        description: "Number of orders placed."
+      - name: last_order_date
+        description: "Date of the last order."
+      - name: lifetime_net_revenue_eur
+        description: "Total net revenue in euros."
